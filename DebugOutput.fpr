@@ -1,0 +1,19 @@
+library DebugOutput;
+
+{$mode delphi}
+
+  uses
+    Windows;
+
+  procedure Debug(hwnd: HWND; hinst: HINST; lpszCmdLine: PChar; nCmdShow: Integer); stdcall;
+  var
+    Message: WideString;
+  begin
+    Message := UTF8Decode(lpszCmdLine);
+    OutputDebugStringW(PWideChar(Message));
+  end;
+
+exports
+  Debug;
+
+end.
